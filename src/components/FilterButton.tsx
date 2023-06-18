@@ -18,10 +18,14 @@ export const FilterButton = () => {
   }
   return (
     <div className="filter">
-      <button className="filter-button" onClick={handleClick}>
+      <button className="filter-button" onClick={handleClick} data-testid="кнопка фильтрации">
         {!showCompleteTasks ? 'Скрыть выполненные задачи' : 'Показать выполненные задачи:'}
       </button>
-      {showCompleteTasks && <div className="filter-complete-count">{completeCountItems} шт.</div>}
+      {showCompleteTasks && (
+        <div className="filter-complete-count" data-testid="количество задач">
+          {completeCountItems} шт.
+        </div>
+      )}
     </div>
   )
 }
