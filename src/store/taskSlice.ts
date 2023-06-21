@@ -5,11 +5,13 @@ import { RootState } from "./configureStore";
 export interface taskListState {
   list: Task[];
   notification: string;
+  isFiltered: boolean
 }
 
 const initialState: taskListState = {
   list: [],
   notification: "",
+  isFiltered: false
 };
 
 export const taskListSlice = createSlice({
@@ -34,8 +36,8 @@ export const taskListSlice = createSlice({
       const task = state.list.find((x) => x.id === action.payload);
 
       if (task) {
-        task.done = !task.done;
-
+          task.done = !task.done;  
+                
         if (task.done) {
           state.notification = `Задача "${task.header}" завершена`;
         }
@@ -50,6 +52,9 @@ export const taskListSlice = createSlice({
     clearNotification: (state) => {
       state.notification = "";
     },
+    setIsFiltered: (state, action: PayloadAction<boolean>) => {
+      state.isFiltered = action.payload
+    }
   },
 });
 
@@ -59,11 +64,15 @@ export const {
   deleteTask,
   toggleTask,
   clearNotification,
+  setIsFiltered
 } = taskListSlice.actions;
 
 export default taskListSlice.reducer;
 
 export const tasksSelector = (state: RootState) => state.taskList.list;
+
+export const tasksUncompleteSelector = (state: RootState) =>
+  state.taskList.list.filter((x) => !x.done);
 
 export const fullCount = (state: RootState) => state.taskList.list.length;
 
@@ -75,3 +84,5 @@ export const uncompleteCount = (state: RootState) =>
 
 export const getNotification = (state: RootState) =>
   state.taskList.notification
+
+  export const getIsFiltered = (state: RootState) => state.taskList.isFiltered
