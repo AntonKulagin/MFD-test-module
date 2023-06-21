@@ -36,8 +36,8 @@ export const taskListSlice = createSlice({
       const task = state.list.find((x) => x.id === action.payload);
 
       if (task) {
-        task.done = !task.done;
-
+          task.done = !task.done;  
+                
         if (task.done) {
           state.notification = `Задача "${task.header}" завершена`;
         }
