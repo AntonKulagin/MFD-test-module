@@ -10,6 +10,11 @@ type Props = Task & {
 export const Item = (props: Props) => {
   const uncompleteCountTasks = useSelector(uncompleteCount)
 
+  const testControlHeader = props.header
+  if (!testControlHeader.length || testControlHeader.length > 32) {
+    return null
+  }
+
   const handleToggle = (id: string, done: boolean) => {
     if (uncompleteCountTasks >= 10 && done) {
       return
