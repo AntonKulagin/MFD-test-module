@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Элемент списка задач нельзя удалять невыполненные задачи 1`] = `
+<li
+  class="item-wrapper"
+>
+  <input
+    id="1111"
+    type="checkbox"
+  />
+  <label
+    for="1111"
+  >
+    невыполненная задача
+  </label>
+  <button
+    class="button button-with-icon"
+    data-alt="Удалить"
+    disabled=""
+  >
+    <img
+      alt="Удалить"
+      src="[object Object]"
+    />
+  </button>
+</li>
+`;
